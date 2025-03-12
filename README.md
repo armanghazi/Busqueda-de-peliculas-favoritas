@@ -1,6 +1,6 @@
 # Búsqueda de Películas Favoritas
 
-Este proyecto es una aplicación web que permite a los usuarios buscar sus películas favoritas utilizando la API de The Movie Database (TMDb). Los usuarios pueden filtrar las películas por fecha de lanzamiento, géneros, calificación y certificaciones.
+Este proyecto es una aplicación web que permite a los usuarios buscar sus películas favoritas utilizando la API de The Movie Database (TMDb). Ofrece filtros por fecha de lanzamiento, géneros, calificación y certificaciones, incluyendo la búsqueda basada en el estándar de certificación de España.
 
 ## Características
 
