@@ -24,7 +24,7 @@ Este proyecto es una aplicación web que permite a los usuarios buscar sus pelí
 
 1. Clona este repositorio en tu máquina local.
    ```bash
-   git clone https://github.com/tu-usuario/tu-repositorio.git
+   git clone [https://github.com/armanghazi/Busqueda-de-peliculas-favoritas.git]
    ```
 2. Navega al directorio del proyecto.
    ```bash
