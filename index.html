@@ -11,6 +11,20 @@
 <body>
     <div id="google_translate_element"></div>
 
+    <div class="search-Language">
+        <div class="search-group2">
+            <label>Selecciona tu certificación e idioma:</label>
+            <div class="language-selectors">
+                <select id="certification" class="certt" onchange="navigateToLink()">
+                    <option value="">Selecciona una certificación</option>
+                    <option value="https://armanghazi.github.io/Busqueda-de-peliculas-favoritas/index.html">Busca películas según el sistema de clasificación y el idioma español.</option>
+                    <option value="https://armanghazi.github.io/Search-for-Favorite-Movies/index.html">Busca películas según el sistema de clasificación de EE. UU. y el idioma inglés.</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    
     <h1>Encuentra tus películas favoritas</h1>
 
     <div class="search-container">
@@ -60,11 +74,29 @@
 
     <div id="results-container"></div>
 
+    <div class="favorites-section">
+        <h2>Mis Películas Favoritas</h2>
+        <div id="favorites-container" class="favorites-grid">
+            <!-- Las películas favoritas se cargarán dinámicamente aquí -->
+        </div>
+    </div>
+
     <script type="module" src="script.js"></script>
+
+    <script>
+        function navigateToLink() {
+            const selectElement = document.getElementById('certification');
+            const selectedValue = selectElement.value;
+            
+            if (selectedValue) {
+                window.open(selectedValue, '_blank'); // Abre el enlace en una nueva pestaña
+            }
+        }
+    </script>
 
     <footer>
         <div class="footer-container">
-            <p>&copy; Arman Ghaziaskari Naeini</p>
+            <p><a href="https://armanghazi.github.io/portfolio/index.html" class="email">https://armanghazi.github.io/portfolio/index.html.com</a></p>
     
             <div class="footer-links">
                 <ul>
@@ -85,8 +117,10 @@
                     </li>
                 </ul>
             </div>
+
+            <p>&copy; Arman Ghaziaskari Naeini</p>
     
-            <p><a href="mailto:ghaziaskari@gmail.com" class="email">ghaziaskari@gmail.com</a></p>
+
         </div>
     </footer>
 

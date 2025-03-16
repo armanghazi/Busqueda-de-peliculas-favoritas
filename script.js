@@ -9,6 +9,26 @@ import { createMovieCard } from './js/components/createMovieCard.js';
 import { toggleFavorite } from './js/components/toggleFavorite.js';
 import { fetchData } from './js/services/fetchData.js';
 
+// Función para cargar películas favoritas
+async function loadFavorites() {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    if (favorites.length > 0) {
+        const favoritesContainer = document.getElementById('favorites-container');
+        if (favoritesContainer) {
+            favoritesContainer.innerHTML = '';
+            for (const movieId of favorites) {
+                try {
+                    const movieData = await fetchData(`https://api.themoviedb.org/3/movie/${movieId}?language=es-ES`);
+                    const movieCard = createMovieCard(movieData);
+                    favoritesContainer.appendChild(movieCard);
+                } catch (error) {
+                    console.error('Error al cargar película favorita:', error);
+                }
+            }
+        }
+    }
+}
+
 // Expose functions to window object for HTML access
 window.searchMovies = searchMovies;
 window.goBack = goBack;
@@ -20,6 +40,8 @@ window.createMovieCard = createMovieCard;
 window.toggleFavorite = toggleFavorite;
 window.fetchData = fetchData;
 window.loadCertifications = loadCertifications;
+window.loadFavorites = loadFavorites;
+
 
 // Initialize the page based on current route
 if (window.location.pathname.includes('result.html')) {
@@ -33,6 +55,7 @@ if (window.location.pathname.includes('result.html')) {
             await initializeGenres();
             initializeRatingSlider();
             await loadCertifications();
+            await loadFavorites(); // Cargar películas favoritas al iniciar
             console.log('Inicialización completada');
         } catch (error) {
             console.error('Error durante la inicialización:', error);

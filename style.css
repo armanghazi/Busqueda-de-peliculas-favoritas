@@ -11,6 +11,61 @@ body {
     padding: 20px;
 }
 
+/* Contenedor general */
+.search-Language {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* Grupo de selección */
+.search-group2 {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Etiqueta */
+.search-group2 label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Selectores de idioma */
+.language-selectors select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+}
+
+.language-selectors select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Opciones */
+.language-selectors option {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Resalte al pasar el ratón sobre el contenedor */
+.search-Language:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
 h1 {
     text-align: center;
     color: #333;
@@ -439,6 +494,11 @@ footer {
     color: #1e90ff; 
 }
 
+/* Ocultar sección de favoritos cuando está vacía */
+.favorites-section:empty,
+.favorites-section:has(#favorites-container:empty) {
+    display: none;
+}
 
 @media (max-width: 480px) {
     body {
