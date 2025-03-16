@@ -476,23 +476,46 @@ footer {
     list-style: none;
     padding: 0;
     margin: 0;
+    color: #fbfbfb;
 }
 
 /* Styling for links */
 .footer-links ul li {
     display: inline;
+    color: #fbfbfb;
 }
 
 .footer-links ul li a {
     text-decoration: none;
-    color: #ddd; 
+    color: #fbfbfb; 
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .footer-links ul li a:hover {
-    color: #1e90ff; 
+    color: #fbfbfb; 
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #fbfbfb;
+    transition: color 0.3s ease;
 }
+a {
+    color: inherit; 
+    text-decoration: 
+}
+
+a:hover {
+    color: #fbfbfb; 
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #fbfbfb;
+    transition: color 0.3s ease;
+}
+
+
+
 
 /* Ocultar sección de favoritos cuando está vacía */
 .favorites-section:empty,
