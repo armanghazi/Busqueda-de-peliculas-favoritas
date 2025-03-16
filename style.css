@@ -566,6 +566,39 @@ footer {
     }
 }
 
+/* Estilos para la sección de favoritos */
+.favorites-section {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    display: none; /* Oculto por defecto */
+}
+
+.favorites-section h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .favorites-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .favorites-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 
 
 

@@ -6,28 +6,8 @@ import { initializeRatingSlider } from './js/init/initializeRatingSlider.js';
 import { loadCertifications } from './js/init/loadCertifications.js';
 import { displayMovies } from './js/components/displayMovies.js';
 import { createMovieCard } from './js/components/createMovieCard.js';
-import { toggleFavorite } from './js/components/toggleFavorite.js';
+import { toggleFavorite, displayFavorites } from './js/components/toggleFavorite.js';
 import { fetchData } from './js/services/fetchData.js';
-
-// Función para cargar películas favoritas
-async function loadFavorites() {
-    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    if (favorites.length > 0) {
-        const favoritesContainer = document.getElementById('favorites-container');
-        if (favoritesContainer) {
-            favoritesContainer.innerHTML = '';
-            for (const movieId of favorites) {
-                try {
-                    const movieData = await fetchData(`https://api.themoviedb.org/3/movie/${movieId}?language=es-ES`);
-                    const movieCard = createMovieCard(movieData);
-                    favoritesContainer.appendChild(movieCard);
-                } catch (error) {
-                    console.error('Error al cargar película favorita:', error);
-                }
-            }
-        }
-    }
-}
 
 // Expose functions to window object for HTML access
 window.searchMovies = searchMovies;
@@ -40,25 +20,43 @@ window.createMovieCard = createMovieCard;
 window.toggleFavorite = toggleFavorite;
 window.fetchData = fetchData;
 window.loadCertifications = loadCertifications;
-window.loadFavorites = loadFavorites;
+window.displayFavorites = displayFavorites;
 
+// Función para inicializar la página de resultados
+async function initializeResultsPage() {
+    try {
+        // Primero cargar los favoritos para que estén disponibles
+        await displayFavorites();
+        // Luego mostrar los resultados de la búsqueda
+        await displayMovies();
+        // Actualizar los botones de favoritos después de mostrar los resultados
+        await displayFavorites();
+    } catch (error) {
+        console.error('Error al inicializar la página de resultados:', error);
+    }
+}
+
+// Función para inicializar la página principal
+async function initializeMainPage() {
+    try {
+        console.log('Inicializando página principal...');
+        initializeYearSelect();
+        await initializeGenres();
+        initializeRatingSlider();
+        await loadCertifications();
+        await displayFavorites();
+        console.log('Inicialización completada');
+    } catch (error) {
+        console.error('Error durante la inicialización:', error);
+    }
+}
 
 // Initialize the page based on current route
-if (window.location.pathname.includes('result.html')) {
-    displayMovies();
-} else {
-    // Initialize the page only if we're on the main page
-    document.addEventListener('DOMContentLoaded', async () => {
-        console.log('Inicializando página principal...');
-        try {
-            initializeYearSelect();
-            await initializeGenres();
-            initializeRatingSlider();
-            await loadCertifications();
-            await loadFavorites(); // Cargar películas favoritas al iniciar
-            console.log('Inicialización completada');
-        } catch (error) {
-            console.error('Error durante la inicialización:', error);
-        }
-    });
-}
+document.addEventListener('DOMContentLoaded', async () => {
+    const isResultPage = window.location.pathname.includes('result.html');
+    if (isResultPage) {
+        await initializeResultsPage();
+    } else {
+        await initializeMainPage();
+    }
+});

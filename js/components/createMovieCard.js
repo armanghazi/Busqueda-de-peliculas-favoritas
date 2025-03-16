@@ -1,6 +1,7 @@
 import { config } from '../utils/config.js';
+import { isFavorite } from './toggleFavorite.js';
 
-export function createMovieCard(movie, isFavorite) {
+export function createMovieCard(movie) {
     const movieCard = document.createElement('div');
     movieCard.className = 'movie-card';
 
@@ -11,15 +12,24 @@ export function createMovieCard(movie, isFavorite) {
     const overview = movie.overview || 'No overview available.';
     const tmdbUrl = `https://www.themoviedb.org/movie/${movie.id}`;
     const releaseDate = formatDate(movie.release_date);
+    const isMovieFavorite = isFavorite(movie.id);
+
+    // Crear el botón de favoritos como un elemento separado
+    const favoriteButton = document.createElement('button');
+    favoriteButton.className = `favorite-button ${isMovieFavorite ? 'active' : ''}`;
+    favoriteButton.setAttribute('data-movie-id', movie.id);
+    favoriteButton.innerHTML = isMovieFavorite ? '❤️' : '🤍';
+    
+    // Añadir el evento click directamente al botón
+    favoriteButton.addEventListener('click', () => {
+        window.toggleFavorite(movie);
+    });
 
     movieCard.innerHTML = `
         <img class="movie-poster" src="${posterPath}" alt="${movie.title}">
         <div class="movie-info">
             <div class="movie-header">
                 <h3 class="movie-title">${movie.title}</h3>
-                <button class="favorite-button ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${movie.id})">
-                    <i class="fas fa-heart"></i>
-                </button>
             </div>
             <p class="movie-rating">Promedio de votos: ${movie.vote_average.toFixed(2)}/10</p>
             <p class="release-date">Fecha de lanzamiento: ${releaseDate}</p>
@@ -33,6 +43,10 @@ export function createMovieCard(movie, isFavorite) {
         </div>
     `;
 
+    // Insertar el botón de favoritos en el header
+    const movieHeader = movieCard.querySelector('.movie-header');
+    movieHeader.appendChild(favoriteButton);
+
     return movieCard;
 }
 
@@ -41,3 +55,4 @@ function formatDate(dateString) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(config.LANGUAGE, options);
 }
+
