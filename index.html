@@ -1,3 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de películas favoritas</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="js/utils/googleTranslate.js"></script>
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+
+    <div class="search-Language">
+        <div class="search-group2">
+            <label>Selecciona tu certificación e idioma:</label>
+            <div class="language-selectors">
+                <select id="certification" class="certt" onchange="navigateToLink()">
+                    <option value="">Selecciona una certificación</option>
+                    <option value="https://armanghazi.github.io/Busqueda-de-peliculas-favoritas/index.html">Busca películas según el sistema de clasificación y el idioma español.</option>
+                    <option value="https://armanghazi.github.io/Search-for-Favorite-Movies/index.html">Busca películas según el sistema de clasificación de EE. UU. y el idioma inglés.</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    
+    <h1>Encuentra tus películas favoritas</h1>
+
+    <div class="search-container">
+        <div class="search-group">
+            <label>Fecha de lanzamiento desde :</label>
+            <div class="date-selectors">
+                <select id="releaseMonth" class="month-select">
+                    <option value="">Selecciona un mes</option>
+                    <option value="01">Enero</option>
+                    <option value="02">Febrero</option>
+                    <option value="03">Marzo</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Mayo</option>
+                    <option value="06">Junio</option>
+                    <option value="07">Julio</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                </select>
+                <select id="releaseYear" class="year-select">
+                    <option value="">Seleccione año</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="search-group">
+            <label>Géneros:</label>
+            <div id="genres-container" class="genres-grid">
+            </div>
+        </div>
+
+        <div class="search-group">
+            <label for="voteAverage">Promedio de votos mínimos (0-10):</label>
+            <input type="number" id="voteAverage" min="0" max="10" step="0.1" value="0" class="rating-input">
+        </div>
+
+        <div class="search-group">
+            <label>Certificaciones:</label>
+            <div id="certifications-container" class="certifications-grid">
+            </div>
+        </div>
+
+        <button onclick="searchMovies()" class="search-button">Buscar películas</button>
+    </div>
+
+    <div id="results-container"></div>
+
+    <div class="favorites-section" id="favorites-section">
+        <h2>Tus películas favoritas</h2>
+        <div class="favorites-grid" id="favorites-grid">
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+
+    <script>
+        function navigateToLink() {
+            var select = document.getElementById("certification");
+            var selectedValue = select.value;
+    
+            if (selectedValue) {
+                window.location.href = selectedValue;
+            }
+        }
+    </script>
+
+
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-section">
@@ -60,3 +156,6 @@
   document.getElementById("copyright").innerHTML = 
     `© ${new Date().getFullYear()} Arman Ghaziaskari Naeini`;
 </script>
+
+  </body>
+</html>
