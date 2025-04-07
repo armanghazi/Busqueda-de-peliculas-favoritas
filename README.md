@@ -6,7 +6,7 @@ Este proyecto es una aplicación web que permite a los usuarios buscar sus pelí
 
 - **Búsqueda de Películas**: Filtra películas por fecha de lanzamiento, géneros, calificación y certificaciones.
 - **Favoritos**: Marca películas como favoritas.
-- **Traducción**: Utiliza Google Translate para traducir la página a diferentes idiomas.
+- **Traducción**: Utiliza Google Translate para traducir la página a diferentes idiomas .
 
 ## Estructura del Proyecto
 
